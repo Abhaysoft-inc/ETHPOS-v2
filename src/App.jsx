@@ -5,6 +5,7 @@ import AddressContext from './context/walletConnectContext'
 import { useState } from 'react'
 import HomePage from './Pages/HomePage'
 import AddShopDetails from './Pages/AddShopDetails'
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         </BrowserRouter>
 
       </AddressContext.Provider>
+      <Analytics />
 
     </>
   )

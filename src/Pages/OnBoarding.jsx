@@ -35,6 +35,7 @@ export default function OnBoarding() {
 
             } catch (error) {
                 console.log(error);
+                alert('Download any crypto wallet')
 
             }
         }

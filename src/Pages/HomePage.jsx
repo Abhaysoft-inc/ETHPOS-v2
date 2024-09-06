@@ -1,75 +1,3 @@
-// import AddressContext from '../context/walletConnectContext'
-// import React, { useState, useEffect, useContext } from 'react'
-// import { FaRegCopy } from "react-icons/fa";
-// import { MdOutlineCallReceived } from "react-icons/md";
-
-// export default function HomePage() {
-
-//     return (
-//         <>
-
-//             <div className="text-white">
-
-
-//                 <div className="homepage p-2">
-//                     <p className="greet text-3xl mt-6 ml-6 font-bold">SevenEleven Shops Pvt.</p>
-//                     <p className="soladdress ml-6 overflow-hidden flex mt-1"> asdasd....asdasd
-//                         <FaRegCopy className='ml-2 mt-1 mr-3' />
-//                         BAL: <b> 0.2 ETH </b>
-//                     </p>
-
-//                     {/* commands */}
-
-//                     <div className="flex space-x-10 mt-10 mx-6 justify-center">
-
-//                         <div className="border-white border w-20 h-20" >
-//                             <img src="/images/bitcoin.png" className='scale-50 invert' alt="" />
-//                             <p className="text-center mt-1">
-//                                 Receive Payments
-//                             </p>
-//                         </div>
-//                         <div className="border-black white w-20 h-20" >
-//                             <img src="/images/transaction.png" className='scale-50 invert' alt="" />
-//                             <p className="text-center mt-1">
-//                                 Recent Payments
-//                             </p>
-//                         </div>
-//                         <div className="border-white border w-20 h-20">
-//                             <img src="/images/bitcoin.png" className='scale-50 invert' alt="" />
-//                             <p className="text-center mt-1">
-//                                 Demo
-//                             </p>
-//                         </div>
-
-//                     </div>
-
-//                     {/* recent transactions */}
-//                     <div className="recent-transactions mt-20 ml-6 ">
-//                         <p className="font-bold text-2xl">Recent Transactions</p>
-
-//                         <div className="transactions mt-4 flex">
-//                             <MdOutlineCallReceived size={30} className='mt-3 mr-2' />
-//                             <div className="transact">
-//                                 <p className="">0.02 ETH</p>
-//                                 <p className="add">sdfdsffdsf....</p>
-//                             </div>
-//                         </div>
-
-//                     </div>
-//                 </div>
-
-
-
-//             </div>
-
-
-//         </>
-
-//     )
-// }
-
-
-
 import React, { useState, useEffect, useContext } from 'react';
 import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineCallReceived } from "react-icons/md";
@@ -77,13 +5,15 @@ import AddressContext from '../context/walletConnectContext';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import contractABI from './contract.abi.json'; // Ensure this path is correct
+import { useNavigate } from 'react-router-dom';
 
 const ETHERSCAN_API_KEY = 'P7G3MXPIQ7I2P93DHKDRKIW2P2UEZ27B9P'; // Replace with your Etherscan API key
 const ETHERSCAN_BASE_URL = 'https://api-sepolia.etherscan.io/api';
 const CONTRACT_ADDRESS = '0x0B12fd7f73549F7b0D97728C91d036a8Dd487EbA'; // Replace with your contract address
 
 export default function HomePage() {
-    const { account } = useContext(AddressContext);
+
+    const { account } = useContext(AddressContext); // getting account
     const [balance, setBalance] = useState('0');
     const [shopName, setShopName] = useState('');
     const [receivedTransactions, setReceivedTransactions] = useState([]);
@@ -128,6 +58,13 @@ export default function HomePage() {
     const start = account ? account.slice(0, 6) : '';
     const end = account ? account.slice(-4) : '';
 
+    const navigate = useNavigate()
+
+    function handleReceivePayment() {
+        navigate('/add-payment')
+
+    }
+
     return (
         <div className="homepage p-2 text-white">
             {error && <p className="error text-red-500">{error}</p>}
@@ -140,8 +77,9 @@ export default function HomePage() {
 
             {/* commands */}
             <div className="flex space-x-10 mt-10 mx-6 justify-center">
-                <div className="border-white border w-20 h-20">
-                    <img src="/images/bitcoin.png" className='scale-50 invert' alt="" />
+                <div className="border-white border w-20 h-20 hover:bg-white" onClick={handleReceivePayment}>
+                    <div className="hover:invert">
+                        <img src="/images/bitcoin.png" className='scale-50 invert' alt="" /></div>
                     <p className="text-center mt-1">Receive Payments</p>
                 </div>
                 <div className="border-white border w-20 h-20">

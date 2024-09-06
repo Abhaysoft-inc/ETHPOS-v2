@@ -6,6 +6,7 @@ import { useState } from 'react'
 import HomePage from './Pages/HomePage'
 import AddShopDetails from './Pages/AddShopDetails'
 import { Analytics } from "@vercel/analytics/react"
+import AddPayment from './Pages/AddPayment'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/' element={<OnBoarding />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/shop-details' element={<AddShopDetails />} />
+            <Route path='/add-payment' element={<AddPayment />} />
           </Routes>
         </BrowserRouter>
 

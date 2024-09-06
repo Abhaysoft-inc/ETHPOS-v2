@@ -1,0 +1,62 @@
+import React from 'react'
+import { IoNotifications, IoNotificationsCircle } from 'react-icons/io5'
+import { MdNotificationImportant } from 'react-icons/md'
+
+export default function AddPayment() {
+    return (
+        <>
+            <div className="text-white">
+
+                <div className="account-card bg-[#221f20] mx-4 mt-6 rounded-[40px] p-4">
+
+                    <div className="box1 flex justify-between">
+                        <div className="profile flex">
+                            <img src="/images/profile.jpg" alt="" className='w-10 h-10 rounded-full mt-2.5 mr-2' />
+                            <div className="meta">
+                                <p className=" mt-2 text-lg ">Abhay Vishwakarma</p>
+                                <p className="address text-xs text-[#4e5155]">
+                                    0x8bD54A059C0...305
+
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                        <div className="icon mt-3 mr-4">
+                            <IoNotificationsCircle size={40} />
+                        </div>
+
+
+                    </div>
+
+                    <div className="flex justify-between">
+
+                        <div className="banace mx-2 mt-6 ">
+                            <p className="text-[#4e5155]">BALANCE</p>
+                            <p className="text-[9vw] font-mono">$5,000</p>
+                        </div>
+
+                        <div className="right mt-6 mr-6">
+                            <p className="text-[#4e5155] font-bold  mx-2">ETH</p>
+                            <p className="mt-4 text-xl">0.2525215</p>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div className="transbtn flex justify-between mx-4  my-6">
+                        <button className='bg-[#353638] px-14 py-2.5 rounded-full font-mono'>Send</button>
+                        <button className='bg-[#353638] px-14 py-2.5 rounded-full font-mono'>Receive</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </>
+    )
+}

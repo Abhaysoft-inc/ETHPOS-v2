@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
 import AddressContext from '../context/walletConnectContext';
-import contractABI from './contract.abi.json'; // Adjust the path to your ABI
+import contractABI from './contract.abi.json'; //abi
 
 export default function AddShopDetails() {
     const { account } = useContext(AddressContext); // Get account from context

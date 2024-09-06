@@ -1,10 +1,23 @@
 import React from 'react'
+import { IoArrowBack, IoArrowBackCircle } from 'react-icons/io5'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddPayment() {
+
+    const navigate = useNavigate()
+
+
+    function handleBackButton() {
+
+        navigate(-1);
+
+    }
     return (
         <>
 
             <div className="text-white">
+
+                <IoArrowBackCircle className='mt-6 ml-3' size={35} onClick={handleBackButton} />
                 <div className="rounded-[20px] bg-gray-900 mt-4 mx-3 px-3 py-5">
                     <p className="text-2xl font-semibold">Add New Payment</p>
 

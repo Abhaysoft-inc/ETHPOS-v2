@@ -13,7 +13,8 @@ const CONTRACT_ADDRESS = '0x0B12fd7f73549F7b0D97728C91d036a8Dd487EbA'; // Replac
 
 export default function HomePage() {
 
-    const { account } = useContext(AddressContext); // getting account
+    const account = localStorage.getItem('account');
+    // const { account } = useContext(AddressContext); // getting account
     const [balance, setBalance] = useState('0');
     const [shopName, setShopName] = useState('');
     const [receivedTransactions, setReceivedTransactions] = useState([]);
@@ -21,6 +22,8 @@ export default function HomePage() {
 
     useEffect(() => {
         const fetchData = async () => {
+
+            console.log(account)
             if (!account) return;
 
             try {
@@ -29,11 +32,13 @@ export default function HomePage() {
                 const balanceInWei = balanceResponse.data.result;
                 const balanceInEth = ethers.formatEther(balanceInWei);
                 setBalance(balanceInEth);
+                console.log(balanceInEth);
 
                 // Fetch transactions
                 const txResponse = await axios.get(`${ETHERSCAN_BASE_URL}?module=account&action=txlist&address=${account}&startblock=0&endblock=99999999&sort=desc&apikey=${ETHERSCAN_API_KEY}`);
                 const received = txResponse.data.result.filter(tx => tx.to.toLowerCase() === account.toLowerCase());
                 setReceivedTransactions(received);
+
 
                 // Fetch shop details
                 const provider = new ethers.BrowserProvider(window.ethereum);
@@ -41,6 +46,7 @@ export default function HomePage() {
                 const name = await contract.getShopName(account);
                 if (name) {
                     setShopName(name);
+                    console.log(name)
                 } else {
                     setShopName('Shop Name Not Found');
                 }
